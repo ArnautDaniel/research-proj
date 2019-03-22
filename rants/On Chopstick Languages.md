@@ -1,3 +1,5 @@
+Originally written on spur of the moment from my chez-charlie repo and subsequently deleted.
+
 # chez-charlie
 Work towards a general binding generator for Chez Scheme
 
@@ -18,7 +20,7 @@ Scheme is alot like Forth in it's natural predisposition against any form of uni
 
 --  At this point it's really just useless ranting (I should really be programming right now instead of ranting) --
 
-I started programming a long time ago when I first picked up a Visual Basic book.  The simplified history of my infatuation with programming languages is pretty much like the golden goose machine from Charlie and the Chocolate factory.  Crap.  Good! Crap.  And shorlty thereafter, Basic, Java, Python, and Perl were all thrown in the garbage shute.  There was something missing, and it wasn't till much later that I realized these languages are essentially DSL's of the mind.  They are little mazes some designer has seen fit to put us in so that we are forced to think like him, and our solutions become guided by the watchful eye of someone we've never met.  For companies, this is a fantastic property, since it invariably leads to cogwheel programmers who can be switched out like replacement parts.  
+I started programming a long time ago when I first picked up a Visual Basic book.  The simplified history of my infatuation with programming languages is pretty much like the golden goose machine from Charlie and the Chocolate factory.  Crap.  Good! Crap.  And shortly thereafter, Basic, Java, Python, and Perl were all thrown in the garbage shute.  There was something missing, and it wasn't till much later that I realized these languages are essentially DSL's of the mind.  They are little mazes some designer has seen fit to put us in so that we are forced to think like him, and our solutions become guided by the watchful eye of someone we've never met.  For companies, this is a fantastic property, since it invariably leads to cogwheel programmers who can be switched out like replacement parts.  
 
 But young me at the time didn't realize this.  Against all frustration with "how dumb programming was" I kept on in search of the "perfect language".  The good news is it exists,  the bad news is it isn't here right now.  So for awhile I stuck with trusty C.  I did strange and impotent things with C.  I found C cumbersome yet lovable in it's simplicity.  And then one day I got sick of C.  I started hearing quotes from Stallman and Larry Wall about some "path to enlightenment" but...
 
