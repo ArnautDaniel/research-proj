@@ -6,7 +6,7 @@ Work towards a general binding generator for Chez Scheme
 Supporting C libraries only at the moment.  
 
 # Note
-This is the one repo I have that people keep staring (which I would imagine is out of excite or curiosity) and then unstarring when they realize I haven't continued working on it.  It's not that many people,  but I figure why not write out an article for fun.
+This is the one repo I have that people keep staring (which I would imagine is out of excitement or curiosity) and then unstarring when they realize I haven't continued working on it.  It's not that many people,  but I figure why not write out an article for fun.
 
 --
 
