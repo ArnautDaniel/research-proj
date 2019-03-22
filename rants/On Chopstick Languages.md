@@ -10,7 +10,7 @@ This is the one repo I have that people keep staring (which I would imagine is o
 
 --
 
-Racket-on-Chez really took the steam out of my proverbial sails.  I really can't see any reason to continue with Chez unless you're you're studying compiler theory and implementation.  Which is a shame because Chez is REALLY awesome but Matt Flatt played his hand perfectly by deciding to integrate into Chez as the new backend.  Genius!  I have to admire that even though I really find racket annoying.  (Their version of OOP drives me up a wall vs using CLOS).  In fact you can thank Mr. Flatt for bringing support for passing structs into the Chez FFI (which is really quite helpful).  By no means am I thinking little of people who continue to use Chez,  it's still fantastic.
+Racket-on-Chez really took the steam out of my proverbial sails.  I really can't see any reason to continue with Chez unless you're studying compiler theory and implementation.  Which is a shame because Chez is REALLY awesome but Matt Flatt played his hand perfectly by deciding to integrate into Chez.  Genius!  I have to admire that even though I really find racket annoying.  (Their version of OOP drives me up a wall vs using CLOS).  In fact you can thank Mr. Flatt for bringing support for passing structs into the Chez FFI (which is really quite helpful).  By no means am I thinking little of people who continue to use Chez,  it's still fantastic.
 
 There is a growing trend in the Scheme ecosystem that perhaps we should merge good backends with advanced frontends,  and so we see efforts like Gerbil where you get some really cool macro systems built off the infamous Gambit compiler.  I wouldn't be surprised (especially in Racket's case) if scheme saw a ressurgence because of this new trend.
 
