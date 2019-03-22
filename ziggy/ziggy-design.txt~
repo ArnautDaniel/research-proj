@@ -1,0 +1,26 @@
+Thoughts in this file go toward trying to understand the solution to a most beguiling problem;  the art of storing things and retrieving them.
+
+Requirements for Ziggy:
+	     Allow for write-many by imagining a SPLIT command
+	     Atomicity is another word for faulty design
+	     Ghost variables should exist
+	     We should be able to ask "what if" and not only
+	     	"what is?".
+	     Parallelization is primitive
+	     Simplicity is the key to understanding
+
+
+What is Ziggy?:
+
+     Ziggy is a event-source database written in the form of N-state machines which encapsulate the changes in values by running a virtual machine where all operations are performed in a forth-like language.
+
+The Ziggy State Machine:
+
+    The state machine is based off of a 1-stack machine.  There are 5 registers that allow operations to be performed.  Instructions are not only indexed by number but also by time itself.  The state machine's memory is stored in plaintext as operations in a Assembly/Forth like language which can be manipulated in ways corresponding to the virutal machines instruction set before being run through a small C interpreter.
+    Every variable is itself a stack machine.  Operations are saved,  not values (except for a possible initial value).
+    Stack machines are also file descriptor monsters.  A Ziggy VM's input is either a generic file descriptor that operates on the furthest bound of memory, or an output file descriptor where the VM outputs it's current value, or an array of all the values it's ever computed.  Earlier memory is never modified unless the STTO (stack to) command is called.  Ziggy VM's are orthrogonical to each other in that one stack machine can connect the input to another stack machine, and vice versa.  In this way not only are current values connected but every possible combination of the machine's computations can be summoned.
+    Typically this would be based on time.
+    Ziggy VM's are divisible,  in that any VM can make a copy of itself and run a computation different from the main one.  A risky JOIN instruction can be used to rebase two VM's into each other.  This isn't as dangerous necessarily because the original values of both VM's are stored in the new one.  
+    
+    
+	     

@@ -1,0 +1,139 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage{libertineotf}
+\usepackage{csquotes}
+\usepackage{mathtools}
+\title{The 12 Labors of Heracles}
+\author{Jack Lucas}
+\begin{document}
+\maketitle
+\section{Overview}
+We imagine a stateless composition of data able to express a determinable AI, which can not only explain it's reasoning but also make mistakes and operate off of false information.  Actor's reason only from what they know,  and are able to ``gossip'' information among themselves. The prime goal of all actors is to unify their state with their desired goal using the same abilities at the player's disposal.
+
+On the satisfaction of a goal we express the following simple rule:\begin{displayquote}
+\textit{A goal is satisfied if that goal is included in the state of the actor asking if the goal is satisfied.}\end{displayquote}
+
+We imagine a set S which defines an abstract data structure for storing unique game data. An example of S is the set of sets \begin{displaymath}S \{ Q R E \}\end{displaymath} for which the sets QRE hold a ``type'' of game data;  \textit{i.e. places, item locations, npcs, etc.}
+
+For a set of sets we may imagine a standard mapping function which takes a functor `f' and applies it to each value of the set. (FIX:  Collasal mistake of using notation like it's for application when it's for concatenation)
+\begin{displaymath}f \cdot S\{ QRE\} = S\{ f(Q)\dots f(R)\dots f(E) \}\end{displaymath}
+or in standard notation we might say:
+\begin{displaymath}\forall s \in S, \quad f(s)\end{displaymath}
+We further define that the functor concatenated to the negation of the functor is equivalent to the original set.
+
+\begin{displaymath}f \cdot \neg f ( S_1) = S_1\end{displaymath}
+or,
+\begin{displaymath}\forall X \in S_1,\quad\forall x \in X,\quad  f \cdot \neg f (x) = S_1
+  \end{displaymath}
+  and,
+  \begin{displaymath}S_1 - f \cdot \neg f (S_1) = \{ \}\end{displaymath}
+
+However, this is nonsense and you've been lied to.  We cannot propose a function `f' which would operate on all unique game data in a sane way,  although it would be technically possible if `f' could determine the types of it's own arguments.  In this regard, we solve the problem by proposing a `typed relational functor' in place of `f' such that an `f' exists for Q, a `g' exists for R, and so on, dependant on their types.  (The relational will come into play shortly).
+
+For this a new set P is determined holding our typed functors, \begin{displaymath}P \{ f \dots g \}\end{displaymath}  These new functors retain the property of creating a 1:1 mapping between value and result.  In other words,  they are referentially transparent (\textit{pure}) functions.
+
+Since we have the concept of types we can now express an interleaving between two sets, in an unorthodox notation where a set is treated as a functor itself.
+
+\begin{displaymath}
+  P\{fgh\} \cdot S_1 = S_1\{ f(Q)\dots g(R)\dots h(E) \}
+  \end{displaymath}
+  Or in simpler terms,
+  \begin{displaymath}
+    P \cdot S_1
+    \end{displaymath}
+
+We remind that the following truth holds where,
+\begin{displaymath}
+  S_1 - P \cdot \neg P( S_1) = \{\}
+  \end{displaymath}
+
+For a last point we relate that P is a relational functor in that any logic retained within P can operate with knowledge of any other value within S, such that a subset of S is always potentially within the scope of any of the functors \textit{f, g, h, etc} mapping over the sets of S.  It is not allowed however, for one subset to change the values within another subset.
+
+If organized under this manner we can now view our game world as not one world, but as the relations between two worlds.  Or in another manner of speaking since two worlds exist and since our functions are referentially transparent, we can potentially say \begin{displaymath}S_1 = \neg P \cdot S_2\end{displaymath}
+
+Another way of viewing this is to say that all values contained within the set S are now viewed as constants, and since S is the value of itself according to time, and a constant is not effected by time,  S is equal to nothing.  This is of course not true within the computer,  but can be viewed as such when we realize that the equation
+\begin{displaymath}S_1 - P \cdot S_1 = P\end{displaymath} holds if both worlds exist.  In reality we would not end up with a set P, but rather the difference between sets which would encode the actual value of the mapping between worlds.
+
+Since the difference between the worlds is contained within our Functor set,  we can view the entire world as an application of functions rather than a change in state.  This is as far as I can tell, a shoddy but primitive attempt at describing the lens through which we must view a purely functional game engine.
+
+The real question is how can this property hold true with an AI?
+\section{A.I.}
+We imagine again that the set E contains within it an opaque structure describing \textit{1-n } NPC's.  Concurrently, we also describe the set Q as a structure containing ``facts'' about the game world;  a database in a vague sense.  This database should remain as static as possible.
+
+Every NPC is given partial information of this database within itself.  Such that on creation we might imagine for an NPC (N \dots Nn) and a database D we end up with the equation.  Where ``+'' stands for the addition of state to the original N.
+\begin{displaymath}Q\{N_0 + D/n ... N_n + D/n\}\end{displaymath}
+
+That is each NPC has a different view of the world.  Later we will discuss the components of NPCs,  but for now we must touch on one quick point.
+
+Another important aspect of the system is that the actions a player can take are unified to the npc's decision system.  That is,  every action a player can take, an npc makes in the same way.  From a programming point of view this means every function for actions that describes a change between World 1 and World 2 must be the same functions called by the input code handling player choices.  This is important to retain the consistency of the systems ability to plan decisions, as the player will also take part in influencing the AI's ability to learn new facts.
+
+The majority of the rest of the explanations will be examples on how we handle decision making.
+
+
+\section{An Emotion Engine for Finite State-Spaces}
+
+Classic texts on Artificial Intelligence describe a basic theory for understanding the computation of simulated reasoning in general domains.   They can also adequately bemoan with a rightful agony over the lack of true reasoning in any domain the theory is actualized on due to the inability to think outside the system itself.  Instances of this arise in \textit{Escher, Godel, Bach} with the \textsc{Mu Problem} and in deliberately unsolveable puzzles.  The lack found in both, is the inability to reach a level of thought that exists outside the system.  \textit{Escher, Godel, Bach} described this as a ``strange loop'', and I propose it be included in a more general system of meta-circular thought.   Meta-Circular thought is a specilization on the general concept of the Meta-Circular,  and describes the process by which we trampoline between radically different contexts in order to gain supplementary perspective.
+
+Consider the following case where I ask you to take the word ``Bacon'' and rearrange it into the word ``Cabron''.  Our rule list for making a move is as follows.
+\begin{enumerate}
+\item A letter can only swap spaces with another letter, and only once.  (ABC -> CBA but now C or A cannot be moved).
+\item An ``R'' can be generated for free, and only once, if a ``Ca'' exists in the seqeuence.  It must be appended  to the sequence.  (Ca -> Car).
+\end{enumerate}
+The process for attempting to solve the problem may look something like this...
+\begin{enumerate}
+\item Evaluate W (``Bacon'').
+\item Evaluate L (``Cabron'').
+\item Apply Rule #1 to ``B'' and ``c'' (Bacon -> Cabon).
+\item Apply Rule #2 (Cabon -> Carbon).
+\end{enumerate}
+At this point we are immedietely thrust outside the system of rules we have created.  We can't move ``b'' again so we are unable to perform the last swap we need to satisfy the goal.  We may imagine we can perform other swaps with Rule #1 but after a few feeble attempts we will eventually ``step outside'' the system and evaluate the problem from a higher level.  Such that we will understand the  set of rules cannot be unified to the problem to produce the desired goal.
+
+So then we must recognize that any A.I. designed for our NPC's will be inheirently lacking in it's ability to reason outside the system.  Because of this we propose a trifecta in the form of the Database, the Emotion Engine, and the state machine properties of Actors.  The goal is not to produce true reasoning, but to simulate reasoning in such a way that an NPC could potentially beat the level before the player does.  We also want to step away from randomization in the sense that an NPC is simply handed a random goal or property that he temporary assumes.  The real magic is in creating a deterministic system that can be explained logically such that the player does not feel cheated or under the burden of ingenuity.
+\subsection{State-Space Definition}
+We introduce the standard notation for state-space problems such that any goal in our currently desired domain can be expressed as the set M = \{S, F, G\}.  Where:
+\begin{enumerate}
+\item S = A set containing our current state.
+\item F = A set containing functions that can mutate our state.
+\item G = A set containing our desired goals.
+\end{enumerate}
+
+All at once we present several factors that form a ideogrammatic method for the design of our A.I. system. TODO: Expand
+
+\subsection{A Special Set F}
+Firstly, we restate our intended goal for NPC A.I. which is actors who can operate off of partial information in two forms.
+\begin{enumerate}
+\item For some database D that contains all facts about the world, a subset of D exists in an actor A.  Such that A contains only partial information about that which can be known.
+\item For some actor A that contains partial information, A can learn new information from members of D.  Information from D exists in the form, \textit{ancedent:consequent} for which it is intuitive to give examples.
+  \begin{enumerate}
+  \item John has money [ \textit{f(John, Money)}]
+  \item Lucy lives at Mullvad Square [ \textit{f(Lucy, Mullvad Square)}].
+    \item The area south of Mullvad Square is Presberty Lane [ \textit{f(Mullvad Square, South, Presberty Lane)}]  From this it can also be reasoned that \textsc{north} of Presberty Lane is Mullvad Square based on the negation of a function defining South.
+    \end{enumerate}
+    From this we say A can be given partial information of the actual information.  For instance A may know someone has money in the form: \textit{f(X, Money)} but not know who.  Note that the database D will know exactly all values for which X is true.
+    A may know that something is south of Mullvad Square, \textit{f(Mullvad Square, south, X)} for which D knows exactly what is south of Mullvad Square.
+  \end{enumerate}
+  In this way the only requirement of our system is that all functions \textit{f} express the atribute of being relational.  That is,  they must be able to subject themselves to partial application.  This can be achieved with the sets D and A. In this manner, we say that whenever a function \textit{f} is used by A it will only be for two potential reasons.
+  \begin{enumerate}
+  \item To satisfy a subgoal or goal
+  \item To determine if a subgoal or goal is satisfiable based on current knowledge
+  \end{enumerate}
+  We imagine an actor A with a set M \{S, F, G\} where G is a goal we have just received.  The actor's first step must be determining if he can even achieve the goal.  To do so the actor must unify his current knowledge against the database.  For instance if the goal is to reach Mullvad Square and the actor's current state exists in Penbrook Drive such that our map looks like \begin{displayquote}
+    Penbrook Drive (Current) -> Presberty Lane -> Mullvad Square\end{displayquote}
+  we may say the actor has knowledge of the location of Penbrook Drive.  An actor must compute if it can find Mullvad Square.  The simplest case is:\begin{displayquote}He has no knowledge of Mullvad Square}\end{displayquote} This case will be returned to later when we discuss set G.
+The second case is: \begin{displayquote}The actor knows of Mullvad Square but he has no knowledge of Presberty Lane\end{displayquote}.
+In this case the Actor must prove that he knows how to get to Mullvad square.  We imagine a function \textit{g} which takes two functions \textit{f} such that in this case we end up with the desire to ask:\begin{displayquote}g(\\ f(Mullvad Square, X, Y),\\\quad f(Mullvad Square, South, Presberty Lane))\end{displayquote}
+\textit{g} has the property that it attempts to ``unify'' two functions.  Remember that \textit{f} is relational in that it will return the value of uninitialized values against the database. An example of this is: \begin{displayquote}f(Mullvad Square, X, Presberty Lane) -->\\X = South\end{displayquote}
+So we may define a function \textit{g} as unifying if:\begin{enumerate}
+\item If f1 and f2 returns ``true'' in both cases than f1 unifies with f2
+\item If either f1 or f2 return a value other than true, then \textit{g} did not unify the values and returns the value of the missing value from \textit{f}.
+\end{enumerate}
+We imagine a simple recursive method for this procedure.  Where \textit{f2} is a function built from the database D (In other words it always returns true.  F2 is explict in the discussion but should be implemented implicitly).  This will be explained after we go into the nature of the set G and S.
+
+
+  \subsection{A Perpetual Set G}
+  \subsection{The Emotion Engine of S}
+\section{NPC's that share,  Care}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
